@@ -1,7 +1,7 @@
 const zmq = require("../..")
 const {assert} = require("chai")
 
-before(function()) {
+before(function() {
   /* Avoid blocking on unclosed sockets on exit. */
   zmq.global.blocky = false
 })
