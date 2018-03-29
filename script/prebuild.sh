@@ -60,7 +60,8 @@ if [ -n "${WINDIR}" ]; then
   cd "${ZMQ_SRC_DIR}"
 
   echo "Building libzmq..."
-  msbuild /m /v:n /p:Configuration=StaticRelease builds/msvc/vs2017/libzmq.sln /target:libzmq
+  # set
+  msbuild.exe /m /v:n /p:Configuration=StaticRelease builds/msvc/vs2017/libzmq.sln /target:libzmq
 
   dir
   cd "${ZMQ_PREFIX}"
