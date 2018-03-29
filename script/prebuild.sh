@@ -60,6 +60,7 @@ if [ -n "${WINDIR}" ]; then
   cd "${ZMQ_SRC_DIR}/builds/msvc/build"
 
   echo "Building libzmq..."
+  env
   ./build.bat
   dir
 
