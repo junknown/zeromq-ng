@@ -57,15 +57,14 @@ if [ -n "${WINDIR}" ]; then
   export PKG_CONFIG_PATH="${ZMQ_PREFIX}/lib/pkgconfig"
 
   test -d "${ZMQ_SRC_DIR}" || tar xzf "${ZMQ_TARBALL}"
-  cd "${ZMQ_SRC_DIR}/builds/msvc/build"
+  cd "${ZMQ_SRC_DIR}"
 
   echo "Building libzmq..."
-  env
-  ./build.bat
-  dir
+  msbuild /m /v:n /p:Configuration=StaticRelease builds/msvc/vs2017/libzmq.sln /target:libzmq
 
+  dir
   cd "${ZMQ_PREFIX}"
-  rm -rf "${ZMQ_SRC_DIR}" "${ZMQ_TARBALL}"
+  # rm -rf "${ZMQ_SRC_DIR}" "${ZMQ_TARBALL}"
 else
   # Working directory is project directory.
   ZMQ_PREFIX="${PWD}/build/libzmq"
