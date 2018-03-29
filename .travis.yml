@@ -18,40 +18,40 @@ jobs:
     env: ALPINE_CHROOT=true
     sudo: required
 
-  # - os: osx
-  #   node_js: 9.7
-  #   osx_image: xcode9.3beta
-  #
-  # - os: osx
-  #   node_js: 8.8
-  #   osx_image: xcode9.3beta
-  #
-  # # Test shared libraries on Linux and macOS.
-  # - os: linux
-  #   node_js: 9.7
-  #   env: ZMQ_SHARED=true
-  #   addons: {apt: {packages: libzmq3-dev}}
-  #
-  # - os: osx
-  #   node_js: 9.7
-  #   osx_image: xcode9.3beta
-  #   env: ZMQ_SHARED=true
-  #
-  # # Test older version branches of ZMQ.
-  # - os: linux
-  #   node_js: 9.7
-  #   # Previous stable version on 4.2 branch.
-  #   env: ZMQ_VERSION=4.2.2
-  #
-  # - os: linux
-  #   node_js: 9.7
-  #   # Latest stable version on 4.1 branch.
-  #   env: ZMQ_VERSION=4.1.6
-  # - os: linux
-  #   node_js: 9.7
-  #   # Version of libzmq3 on Ubuntu Trusty.
-  #   env: ZMQ_VERSION=4.0.4
-  #
+  - os: osx
+    node_js: 9.7
+    osx_image: xcode9.3beta
+
+  - os: osx
+    node_js: 8.8
+    osx_image: xcode9.3beta
+
+  # Test shared libraries on Linux and macOS.
+  - os: linux
+    node_js: 9.7
+    env: ZMQ_SHARED=true
+    addons: {apt: {packages: libzmq3-dev}}
+
+  - os: osx
+    node_js: 9.7
+    osx_image: xcode9.3beta
+    env: ZMQ_SHARED=true
+
+  # Test older version branches of ZMQ.
+  - os: linux
+    node_js: 9.7
+    # Previous stable version on 4.2 branch.
+    env: ZMQ_VERSION=4.2.2
+
+  - os: linux
+    node_js: 9.7
+    # Latest stable version on 4.1 branch.
+    env: ZMQ_VERSION=4.1.6
+  - os: linux
+    node_js: 9.7
+    # Version of libzmq3 on Ubuntu Trusty.
+    env: ZMQ_VERSION=4.0.4
+
   # # Publish all binaries for Linux and macOS.
   # - stage: publish binaries
   #   node_js: 9.7
