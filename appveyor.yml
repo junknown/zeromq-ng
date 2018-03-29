@@ -8,8 +8,6 @@ platform:
 - x64
 - x86
 
-build: off
-
 install:
 - ps: Install-Product node $env:node_js $env:platform
 - appveyor-retry call sh script/ci/install.sh
