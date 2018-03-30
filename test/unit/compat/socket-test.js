@@ -17,7 +17,7 @@ describe("compat socket", function() {
   })
 
   it("should include type and close", function() {
-    assert.equal(sock.type, "reqx")
+    assert.equal(sock.type, "req")
     assert.typeOf(sock.close, "function")
   })
 
