@@ -12,59 +12,28 @@ else
 fi
 
 if [ -n "${WINDIR}" ]; then
-  # # We're on Windows. Download a prebuilt library.
-  # export ARCH=$(node -p 'process.arch')
-  #
-  # # Working directory is "build"
-  # ZMQ_PREFIX="${PWD}/libzmq"
-  #
-  # ZMQ_BINARY="https://github.com/nteract/libzmq-win/releases/download/v2.1.0/libzmq-${ZMQ_VERSION}-${ARCH}.lib"
-  # ZMQ_HEADER="https://raw.githubusercontent.com/zeromq/${ZMQ_GH_REPO}/v${ZMQ_VERSION}/include/zmq.h"
-  # ZMQ_LIB="libzmq.lib"
-  # ZMQ_H="zmq.h"
-  #
-  # # Give preference to all MSYS64 binaries. This solves issues with mkdir and
-  # # other commands not working properly.
-  # export PATH="/usr/bin:${PATH}"
-  # export PYTHON="/c/Python27/python"
-  #
-  # mkdir -p "${ZMQ_PREFIX}/lib"
-  # mkdir -p "${ZMQ_PREFIX}/include"
-  #
-  # echo "Downloading libzmq binary..."
-  # curl "${ZMQ_BINARY}" -fsSL -o "${ZMQ_PREFIX}/lib/${ZMQ_LIB}"
-  # curl "${ZMQ_HEADER}" -fsSL -o "${ZMQ_PREFIX}/include/${ZMQ_H}"
-  # Working directory is project directory.
-  ZMQ_PREFIX="${PWD}/build/libzmq"
+  # We're on Windows. Download a prebuilt library.
+  export ARCH=$(node -p 'process.arch')
 
-  ZMQ_SOURCE="https://github.com/zeromq/${ZMQ_GH_REPO}/releases/download/v${ZMQ_VERSION}/zeromq-${ZMQ_VERSION}.tar.gz"
-  ZMQ_SRC_DIR="zeromq-${ZMQ_VERSION}"
-  ZMQ_TARBALL="zeromq-${ZMQ_VERSION}.tar.gz"
+  # Working directory is "build"
+  ZMQ_PREFIX="${PWD}/libzmq"
 
-  mkdir -p "${ZMQ_PREFIX}"
-  cd "${ZMQ_PREFIX}"
+  ZMQ_BINARY="https://github.com/nteract/libzmq-win/releases/download/v2.1.0/libzmq-${ZMQ_VERSION}-${ARCH}.lib"
+  ZMQ_HEADER="https://raw.githubusercontent.com/zeromq/${ZMQ_GH_REPO}/v${ZMQ_VERSION}/include/zmq.h"
+  ZMQ_LIB="libzmq.lib"
+  ZMQ_H="zmq.h"
 
+  # Give preference to all MSYS64 binaries. This solves issues with mkdir and
+  # other commands not working properly.
+  export PATH="/usr/bin:${PATH}"
+  export PYTHON="/c/Python27/python"
 
-  if [ -f "${ZMQ_TARBALL}" ]; then
-    echo "Found libzmq source; skipping download..."
-  else
-    echo "Downloading libzmq source..."
-    curl "${ZMQ_SOURCE}" -fsSL -o "${ZMQ_TARBALL}"
-  fi
+  mkdir -p "${ZMQ_PREFIX}/lib"
+  mkdir -p "${ZMQ_PREFIX}/include"
 
-  export CFLAGS=-fPIC
-  export CXXFLAGS=-fPIC
-  export PKG_CONFIG_PATH="${ZMQ_PREFIX}/lib/pkgconfig"
-
-  test -d "${ZMQ_SRC_DIR}" || tar xzf "${ZMQ_TARBALL}"
-  cd "${ZMQ_SRC_DIR}"
-
-  echo "Building libzmq..."
-  msbuild.exe /m /p:Configuration=StaticRelease builds/msvc/vs2017/libzmq.sln /target:libzmq
-
-  dir
-  cd "${ZMQ_PREFIX}"
-  # rm -rf "${ZMQ_SRC_DIR}" "${ZMQ_TARBALL}"
+  echo "Downloading libzmq binary..."
+  curl "${ZMQ_BINARY}" -fsSL -o "${ZMQ_PREFIX}/lib/${ZMQ_LIB}"
+  curl "${ZMQ_HEADER}" -fsSL -o "${ZMQ_PREFIX}/include/${ZMQ_H}"
 else
   # Working directory is project directory.
   ZMQ_PREFIX="${PWD}/build/libzmq"
