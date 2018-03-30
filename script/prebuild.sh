@@ -61,7 +61,7 @@ if [ -n "${WINDIR}" ]; then
 
   echo "Building libzmq..."
   "${VS140COMNTOOLS}vsvars32.bat"
-  msbuild.exe /m /v:n /p:Configuration=StaticRelease builds/msvc/vs2017/libzmq.sln /target:libzmq
+  msbuild /m /v:n /p:Configuration=StaticRelease builds/msvc/vs2017/libzmq.sln /target:libzmq
 
   dir
   cd "${ZMQ_PREFIX}"
