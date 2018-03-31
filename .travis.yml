@@ -20,10 +20,12 @@ jobs:
 
   - os: osx
     node_js: 9.7
+    env: NO_COMPAT_TEST=true
     osx_image: xcode9.3beta
 
   - os: osx
     node_js: 8.8
+    env: NO_COMPAT_TEST=true
     osx_image: xcode9.3beta
 
   # Test shared libraries on Linux and macOS.
