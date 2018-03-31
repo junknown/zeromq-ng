@@ -1,7 +1,7 @@
 const zmq = require("../..")
 const semver = require("semver")
 
-/* Windows cannot bind on a ports just above 1014; start at 2000 to be safe. */
+/* Windows cannot bind on a ports just above 1014; start higher to be safe. */
 let seq = 5000
 
 function uniqAddress(proto) {
