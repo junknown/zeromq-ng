@@ -29,13 +29,13 @@ jobs:
   # Test shared libraries on Linux and macOS.
   - os: linux
     node_js: 9.7
-    env: ZMQ_SHARED=true
+    env: ZMQ_SHARED=true NO_COMPAT_TEST=true
     addons: {apt: {packages: libzmq3-dev}}
 
   - os: osx
     node_js: 9.7
     osx_image: xcode9.3beta
-    env: ZMQ_SHARED=true
+    env: ZMQ_SHARED=true NO_COMPAT_TEST=true
 
   # Test older version branches of ZMQ.
   - os: linux
