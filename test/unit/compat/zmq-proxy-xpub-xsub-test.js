@@ -2,7 +2,7 @@ const zmq = require("./load")
 const {assert} = require("chai")
 const {testProtos, uniqAddress} = require("../helpers")
 
-for (const proto of testProtos.filter(p => !["ipc", "inproc"].includes(p))) {
+for (const proto of testProtos("tcp")) {
   describe(`compat proxy with ${proto} xpub-xsub`, function() {
     const sockets = []
 

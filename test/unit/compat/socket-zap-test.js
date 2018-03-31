@@ -50,7 +50,7 @@ function start() {
   })
 }
 
-for (const proto of testProtos.filter(p => !["ipc"].includes(p))) {
+for (const proto of testProtos("tcp", "inproc")) {
   describe(`compat socket with ${proto} zap`, function() {
     let zapSocket, rep, req
 

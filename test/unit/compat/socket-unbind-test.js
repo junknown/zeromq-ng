@@ -4,7 +4,7 @@ const {assert} = require("chai")
 const {testProtos, uniqAddress} = require("../helpers")
 
 /* TODO: This test regularly hangs. */
-for (const proto of testProtos.filter(p => !["ipc", "inproc"].includes(p))) {
+for (const proto of testProtos("tcp")) {
   describe.skip(`compat socket with ${proto} unbind`, function() {
     beforeEach(function() {
       /* Seems < 4.2 is affected by https://github.com/zeromq/libzmq/issues/1583 */

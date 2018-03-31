@@ -16,13 +16,18 @@ function uniqAddress(proto) {
   }
 }
 
-/* Always test with tcp. */
-const testProtos = ["tcp"]
+function testProtos(...requested) {
+  const set = new Set(requested)
 
-/* Do not test with ipc if unsupported. */
-if (zmq.capability.ipc) testProtos.push("ipc")
+  /* Do not test with ipc if unsupported. */
+  if (!zmq.capability.ipc) set.delete("ipc")
 
-/* Only test inproc with version 4.2+, earlier versions are unreliable. */
-if (semver.satisfies(zmq.version, ">= 4.2")) testProtos.push("inproc")
+  /* Only test inproc with version 4.2+, earlier versions are unreliable. */
+  if (semver.satisfies(zmq.version, "< 4.2")) set.delete("inproc")
+
+  if (set.empty) console.error("Warning: test protocol set is empty")
+
+  return [...set]
+}
 
 module.exports = {testProtos, uniqAddress}
