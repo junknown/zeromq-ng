@@ -25,7 +25,7 @@
     "node-pre-gyp"
   ],
   "devDependencies": {
-    "@types/node": ">= 8.0",
+    "@types/node": ">=10.3.0",
     "benchmark": ">= 0",
     "chai": ">= 4.1",
     "choma": ">= 1.2",
